@@ -1,0 +1,36 @@
+# depslib dependency file v1.0
+1539161305 source:m:\astar\astar\main.cpp
+	<iostream>
+	<mapManager.h>
+	<MFPath.h>
+
+1539160912 source:m:\astar\astar\src\node.cpp
+	"node.h"
+
+1539157166 m:\astar\astar\include\node.h
+	<list>
+
+1539158422 m:\astar\astar\include\mapmanager.h
+	<node.h>
+	<iostream>
+	<list>
+
+1539157503 source:m:\astar\astar\src\map.cpp
+	"map.h"
+
+1539157506 m:\astar\astar\include\map.h
+	<node.h>
+	<iostream>
+
+1539159083 source:m:\astar\astar\src\mapmanager.cpp
+	"mapManager.h"
+
+1539161442 source:m:\astar\astar\src\mfpath.cpp
+	"MFPath.h"
+
+1539161438 m:\astar\astar\include\mfpath.h
+	<mapManager.h>
+	<node.h>
+	<iostream>
+	<list>
+

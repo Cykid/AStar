@@ -5,11 +5,11 @@ using namespace std;
 
 int main()
 {
-    mapManager * myMap = new mapManager(5,5,true);
+    mapManager * myMap = new mapManager(20,20,true);
     MFPath* pathfinder = new MFPath(myMap);
-    myMap->drawMap();
 
-    pathfinder->findPath(0,4,4,0);
+
+    pathfinder->findPath(0,19,19,0);
     myMap->drawMap();
 
 

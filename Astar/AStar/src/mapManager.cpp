@@ -14,12 +14,22 @@ mapManager::mapManager(int _width, int _height, bool _diagonal)
         }
     }
 
-    this->tileMap[0][0]->walkable = false;
-    this->tileMap[1][0]->walkable = false;
-    this->tileMap[0][1]->walkable = false;
-    this->tileMap[2][2]->walkable = false;
-    this->tileMap[2][1]->walkable = false;
-    this->tileMap[2][0]->walkable = false;
+    for(int x = 0; x < this->width;x++)
+    {
+        for(int y = 0; y < this->height;y++ )
+        {
+            if((x % 5 != 0) && y < this->height -1){
+                this->tileMap[x][y]->walkable=false;
+            }
+            else if ((x % 9 != 0))
+            {
+                if(y > 0)
+                {
+                    this->tileMap[x][y]->walkable=false;
+                }
+            }
+        }
+    }
 
 
     this->initMap();

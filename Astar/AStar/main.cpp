@@ -9,7 +9,7 @@ int main()
     MFPath* pathfinder = new MFPath(myMap);
     myMap->drawMap();
 
-    pathfinder->findPath(3,2,1,2);
+    pathfinder->findPath(1,2,1,2);
 
 
     return 0;

@@ -9,8 +9,8 @@ class mapManager
     public:
         mapManager(int _width, int _height,bool _diagonal);
         virtual ~mapManager();
-        int width = 3;
-        int height = 3;
+        int width = 5;
+        int height = 5;
         node * tileMap[5][5];
         void drawMap();
         bool diagonal = false;

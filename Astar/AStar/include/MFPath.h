@@ -15,7 +15,7 @@ class MFPath
         std::list<node*>oList;
         std::list<node*>cList;
 
-        std::list<node*>findPath(int startX,int startY,int endX, int endY);
+        std::list<node*> findPath(int startX,int startY,int endX, int endY);
 
         void expandNodes();
 

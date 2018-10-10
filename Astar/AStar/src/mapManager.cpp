@@ -14,21 +14,36 @@ mapManager::mapManager(int _width, int _height, bool _diagonal)
         }
     }
 
+    int col = 0;
     for(int x = 0; x < this->width;x++)
+
     {
+
+        if(col == 4) { col = 0;}
+
         for(int y = 0; y < this->height;y++ )
         {
-            if((x % 5 != 0) && y < this->height -1){
-                this->tileMap[x][y]->walkable=false;
-            }
-            else if ((x % 9 != 0))
+            if(col == 1)
             {
                 if(y > 0)
                 {
                     this->tileMap[x][y]->walkable=false;
                 }
             }
+            if(col == 2)
+            {
+
+            }
+            if(col == 3)
+            {
+                if(y < this->height -1)
+                {
+                    this->tileMap[x][y]->walkable=false;
+                }
+            }
+
         }
+        col++;
     }
 
 

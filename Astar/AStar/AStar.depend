@@ -34,7 +34,7 @@
 	<iostream>
 	<list>
 
-1539194042 source:f:\astar\astar\astar\main.cpp
+1539203064 source:f:\astar\astar\astar\main.cpp
 	<iostream>
 	<mapManager.h>
 	<MFPath.h>
@@ -44,21 +44,23 @@
 	<iostream>
 	<list>
 
-1539160766 f:\astar\astar\astar\include\node.h
+1539203122 f:\astar\astar\astar\include\node.h
 	<list>
 
-1539195147 f:\astar\astar\astar\include\mfpath.h
+1539200426 f:\astar\astar\astar\include\mfpath.h
 	<mapManager.h>
 	<node.h>
 	<iostream>
 	<list>
+	<algorithm>
+	<stdlib.h>
 
-1539162683 source:f:\astar\astar\astar\src\mapmanager.cpp
+1539203471 source:f:\astar\astar\astar\src\mapmanager.cpp
 	"mapManager.h"
 
-1539194081 source:f:\astar\astar\astar\src\mfpath.cpp
+1539203580 source:f:\astar\astar\astar\src\mfpath.cpp
 	"MFPath.h"
 
-1539164512 source:f:\astar\astar\astar\src\node.cpp
+1539199705 source:f:\astar\astar\astar\src\node.cpp
 	"node.h"
 

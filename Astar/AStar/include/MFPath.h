@@ -5,6 +5,8 @@
 
 #include <iostream>
 #include <list>
+#include <algorithm>
+#include <stdlib.h>
 class MFPath
 {
     public:
@@ -17,7 +19,9 @@ class MFPath
 
         std::list<node*> findPath(int startX,int startY,int endX, int endY);
 
-        void expandNodes();
+        void expandNodes(int _endPosX, int _endPosY);
+        std::list<node*> buildPath(int _endPosX, int _endPosY);
+
 
 
     protected:

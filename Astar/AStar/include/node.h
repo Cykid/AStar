@@ -14,6 +14,9 @@ class node
         int posX = 0;
         int posY = 0;
         bool walkable = true;
+        bool pathTile = false;
+        bool startTile = false;
+        bool endTile = false;
         node * parent;
         std::list<node*> neighbors;
 

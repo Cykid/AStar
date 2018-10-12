@@ -64,3 +64,34 @@
 1539199705 source:f:\astar\astar\astar\src\node.cpp
 	"node.h"
 
+1539331164 source:c:\users\mt\desktop\astar-master\astar\astar\main.cpp
+	<iostream>
+	<mapManager.h>
+	<MFPath.h>
+
+1539169148 c:\users\mt\desktop\astar-master\astar\astar\include\mapmanager.h
+	<node.h>
+	<iostream>
+	<list>
+
+1539327762 c:\users\mt\desktop\astar-master\astar\astar\include\node.h
+	<list>
+
+1539268978 c:\users\mt\desktop\astar-master\astar\astar\include\mfpath.h
+	<mapManager.h>
+	<node.h>
+	<iostream>
+	<list>
+	<algorithm>
+	<stdlib.h>
+	<windows.h>
+
+1539331278 source:c:\users\mt\desktop\astar-master\astar\astar\src\mapmanager.cpp
+	"mapManager.h"
+
+1539330631 source:c:\users\mt\desktop\astar-master\astar\astar\src\mfpath.cpp
+	"MFPath.h"
+
+1539169148 source:c:\users\mt\desktop\astar-master\astar\astar\src\node.cpp
+	"node.h"
+

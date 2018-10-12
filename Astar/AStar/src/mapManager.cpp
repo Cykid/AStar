@@ -13,38 +13,61 @@ mapManager::mapManager(int _width, int _height, bool _diagonal)
             this->tileMap[x][y]=new node(x,y);
         }
     }
+/*
+    this->tileMap[0][18]->walkable = false;
+    this->tileMap[1][18]->walkable = false;
+    this->tileMap[2][18]->walkable = false;
+    this->tileMap[3][18]->walkable = false;
+    this->tileMap[4][18]->walkable = false;
+    this->tileMap[5][18]->walkable = false;
+    this->tileMap[6][18]->walkable = false;
+    this->tileMap[7][18]->walkable = false;
+    this->tileMap[8][18]->walkable = false;
+    this->tileMap[9][18]->walkable = false;
+    this->tileMap[10][18]->walkable = false;
+    this->tileMap[11][18]->walkable = false;
+    this->tileMap[12][18]->walkable = false;
+    this->tileMap[13][18]->walkable = false;
+    this->tileMap[14][18]->walkable = false;
 
-    int col = 0;
-    for(int x = 0; x < this->width;x++)
+    this->tileMap[0][5]->walkable = false;
+    this->tileMap[1][5]->walkable = false;
+    this->tileMap[2][5]->walkable = false;
+    this->tileMap[3][5]->walkable = false;
+    this->tileMap[4][5]->walkable = false;
+    this->tileMap[5][5]->walkable = false;
+    this->tileMap[6][5]->walkable = false;
+    this->tileMap[7][5]->walkable = false;
+    this->tileMap[8][5]->walkable = false;
+    this->tileMap[9][5]->walkable = false;
+    this->tileMap[10][5]->walkable = false;
+    this->tileMap[11][5]->walkable = false;
+    this->tileMap[12][5]->walkable = false;
+    this->tileMap[13][5]->walkable = false;
+    this->tileMap[14][5]->walkable = false;
 
-    {
 
-        if(col == 4) { col = 0;}
+    this->tileMap[1][8]->walkable = false;
+    this->tileMap[2][8]->walkable = false;
+    this->tileMap[3][8]->walkable = false;
+    this->tileMap[4][8]->walkable = false;
+    this->tileMap[5][8]->walkable = false;
+    this->tileMap[6][8]->walkable = false;
+    this->tileMap[7][8]->walkable = false;
+    this->tileMap[8][8]->walkable = false;
+    this->tileMap[9][8]->walkable = false;
+    this->tileMap[10][8]->walkable = false;
+    this->tileMap[11][8]->walkable = false;
+    this->tileMap[12][8]->walkable = false;
+    this->tileMap[13][8]->walkable = false;
+    this->tileMap[14][8]->walkable = false;
+    this->tileMap[15][8]->walkable = false;
+    this->tileMap[16][8]->walkable = false;
+    this->tileMap[17][8]->walkable = false;
+    this->tileMap[18][8]->walkable = false;
+    this->tileMap[19][8]->walkable = false;
 
-        for(int y = 0; y < this->height;y++ )
-        {
-            if(col == 1)
-            {
-                if(y > 0)
-                {
-                    this->tileMap[x][y]->walkable=false;
-                }
-            }
-            if(col == 2)
-            {
-
-            }
-            if(col == 3)
-            {
-                if(y < this->height -1)
-                {
-                    this->tileMap[x][y]->walkable=false;
-                }
-            }
-
-        }
-        col++;
-    }
+*/
 
 
     this->initMap();
@@ -76,6 +99,15 @@ void mapManager::drawMap()
                         std::cout<<"[P]";
                     }
                 }
+                else if(this->tileMap[x][y]->closedtile == true)
+                {
+                    //std::cout<<"["<<tileMap[x][y]->getFcost()<<"]";
+                    std::cout<<"[c]";
+                }
+                else if(this->tileMap[x][y]->openTile == true)
+                {
+                    std::cout<<"[o]";
+                }
                 else{
                     std::cout<<"[ ]";
                 }
@@ -97,6 +129,7 @@ void mapManager::initMap()
         for(int y = 0; y < this->height; y++)
         {
             std::list<node*> nbList;
+            nbList.clear();
             int nX = 0;
             int nY = 0;
             //Oben

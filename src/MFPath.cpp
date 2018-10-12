@@ -37,8 +37,8 @@ std::list<node*> MFPath::findPath(int startX, int startY, int endX, int endY)
                 //this->tileMap->drawMap();
 
 
-               // Sleep(300);
-               // system("cls");
+                //Sleep(300);
+                //system("cls");
                 counter++;
             }
 

@@ -14,7 +14,6 @@ mapManager::mapManager(int _width, int _height, bool _diagonal)
         {
             this->tileMap[x][y]=new node(x,y);
         }
-
     }
 
 

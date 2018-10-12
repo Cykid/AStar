@@ -7,6 +7,7 @@
 #include <list>
 #include <algorithm>
 #include <stdlib.h>
+#include <windows.h>
 class MFPath
 {
     public:

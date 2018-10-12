@@ -8,10 +8,8 @@ int main()
     mapManager * myMap = new mapManager(20,20,true);
     MFPath* pathfinder = new MFPath(myMap);
 
-
-    pathfinder->findPath(0,19,18,0);
+    pathfinder->findPath(0,19,8,0);
     myMap->drawMap();
-
 
     return 0;
 }

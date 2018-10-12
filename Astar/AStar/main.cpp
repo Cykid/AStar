@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    mapManager * myMap = new mapManager(20,20,true);
+    mapManager * myMap = new mapManager(25,25,true);
     MFPath* pathfinder = new MFPath(myMap);
 
     pathfinder->findPath(0,19,8,0);

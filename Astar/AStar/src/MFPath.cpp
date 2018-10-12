@@ -34,10 +34,11 @@ std::list<node*> MFPath::findPath(int startX, int startY, int endX, int endY)
             {
                 this->expandNodes(endX,endY);
 
-                this->tileMap->drawMap();
+                //this->tileMap->drawMap();
 
 
-                system("cls");
+               // Sleep(300);
+               // system("cls");
                 counter++;
             }
 
@@ -62,7 +63,6 @@ void MFPath::expandNodes(int _endPosX, int _endPosY)
 {
 
     bool nodeChecked;
-    node * tmp;
     this->oList.sort([](node* a, node*b){return a->getFcost() < b->getFcost();});
     node * currentNode = *(this->oList.begin());
 

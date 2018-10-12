@@ -6,14 +6,18 @@ mapManager::mapManager(int _width, int _height, bool _diagonal)
     this->height = _height;
     this->diagonal = _diagonal;
 
-    for(int x = 0; x < this->width; x++)
+    this->tileMap = new  node** [_width];
+    for(int x=0; x < _width;x++)
     {
+        this->tileMap[x] = new  node*[_height] ;
         for(int y = 0; y < this->height; y++)
         {
             this->tileMap[x][y]=new node(x,y);
         }
+
     }
-/*
+
+
     this->tileMap[0][18]->walkable = false;
     this->tileMap[1][18]->walkable = false;
     this->tileMap[2][18]->walkable = false;
@@ -67,7 +71,7 @@ mapManager::mapManager(int _width, int _height, bool _diagonal)
     this->tileMap[18][8]->walkable = false;
     this->tileMap[19][8]->walkable = false;
 
-*/
+
 
 
     this->initMap();

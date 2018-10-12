@@ -11,7 +11,11 @@ class mapManager
         virtual ~mapManager();
         int width = 5;
         int height = 5;
-        node * tileMap[20][20];
+        node *** tileMap;
+
+
+        int ** arraya;
+        //node * tileMap[20][20];
         void drawMap();
         bool diagonal = false;
         void initMap();

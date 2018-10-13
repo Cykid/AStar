@@ -33,7 +33,6 @@ class simplePath
             node * parent;
             std::list<node*> neighbors;
             int getFcost();
-
     };
 
     //Grid of Nodes

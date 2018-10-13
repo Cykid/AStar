@@ -30,7 +30,6 @@ int simplePath::node::getFcost()
 
 
 //GRID IMPLEMENTATION
-
 simplePath::grid::grid(int _width, int _height, bool _diagonal)
 {
     this->width = _width;
@@ -61,43 +60,24 @@ void simplePath::grid::drawMap()
     {
         for(int x = 0; x < this->width; x++)
         {
-            if(this->tileMap[x][y]->walkable == true)
-            {
-                if(this->tileMap[x][y]->pathTile == true){
-                    if(this->tileMap[x][y]->startTile == true)
-                    {
-                        std::cout<<"[S]";
-                    }
-                    else if(this->tileMap[x][y]->endTile == true){
-                        std::cout<<"[E]";
-                    }
-                    else
-                    {
-                        std::cout<<"[P]";
-                    }
-                }
-                else if(this->tileMap[x][y]->closedtile == true)
-                {
-                    //std::cout<<"["<<tileMap[x][y]->getFcost()<<"]";
-                    std::cout<<"[c]";
-                }
-                else if(this->tileMap[x][y]->openTile == true)
-                {
-                    std::cout<<"[o]";
-                }
-                else{
-                    std::cout<<"[ ]";
-                }
+            node * tile = this->tileMap[x][y];
+            char tileChar;
 
-            }
-            else
+            if(!tile->walkable) tileChar = '#';
+            else if(tile->pathTile)
             {
-                std::cout<<"[#]";
+                tileChar = 'P';
+                if(tile->startTile) tileChar = 'S';
+                else if(tile->endTile) tileChar = 'E';
             }
+            else if(tile->closedtile) tileChar = 'c';
+            else if(tile->openTile) tileChar = 'o';
+            else tileChar = ' ';
+
+            std::cout<<"["<<tileChar<<"]";
         }
         std::cout<<std::endl;
     }
-
 }
 
 void simplePath::grid::initMap()
@@ -121,17 +101,12 @@ void simplePath::grid::initMap()
                     nbList.push_back(this->tileMap[nX][nY]);
                 }
             }
-
             this->tileMap[x][y]->neighbors = nbList;
-
         }
     }
-
 }
 
-
-//navAgent Implemention
-
+//navAgent IMPLEMENTATION
 simplePath::navAgent::navAgent(grid* _mapManager)
 {
     this->tileMap = _mapManager;
@@ -148,45 +123,43 @@ std::list<simplePath::node *> simplePath::navAgent::findPath(int startX, int sta
     this->oList.clear();
     this->cList.clear();
     int counter = 0;
+    int mapWidth = this->tileMap->width;
+    int mapHeigth = this->tileMap->height;
+    node * startNode = this->tileMap->tileMap[startX][startY];
+    node * endNode = this->tileMap->tileMap[endX][endY];
 
-    this->tileMap->tileMap[startX][startY]->startTile = true;
-    this->tileMap->tileMap[startX][startY]->pathTile = true;
-    this->tileMap->tileMap[endX][endY]->endTile = true;
+    startNode->startTile = true;
+    startNode->pathTile = true;
+    endNode->endTile = true;
 
-    if(startX >= 0 && startX < this->tileMap->width && startY >= 0 && startY < this->tileMap->height)
+    if(startX < 0 || startX >= mapWidth || startY < 0 || startY >= mapHeigth)
     {
-        if(endX >= 0 && endX < this->tileMap->width && endY >= 0 && endY < this->tileMap->height)
-        {
-            //Expand first Node
-            this->oList.push_back(this->tileMap->tileMap[startX][startY]);
-            //Calc first Costs
-            this->tileMap->tileMap[startX][startY]->gCost = this->tileMap->tileMap[startX][startY]->oCost;
-            this->tileMap->tileMap[startX][startY]->hCost = std::abs(startX - endX) + std::abs(startY - endY);
-            while(!this->oList.empty())
-            {
-                this->expandNodes(endX,endY);
-
-                //this->tileMap->drawMap();
-
-
-                //Sleep(300);
-                //system("cls");
-                counter++;
-            }
-
-            std::cout<<"Iterationen :"<<counter<<std::endl;
-
-            this->buildPath(endX,endY);
-        }
-        else
-        {
-            std::cout<<"End Punkt out of Range"<<std::endl;
-        }
+        std::cout<<"Start point out of range."<<std::endl;
+        return finalPath;
     }
-    else
+    if(endX < 0 || endX >= mapWidth || endY < 0 || endY >= mapHeigth)
     {
-            std::cout<<"End Punkt out of Range"<<std::endl;
+        std::cout<<"End point out of range."<<std::endl;
+        return finalPath;
     }
+
+    //Expand first Node
+    this->oList.push_back(startNode);
+    //Calc first Costs
+    startNode->gCost = startNode->oCost;
+    startNode->hCost = std::abs(startX - endX) + std::abs(startY - endY);
+    while(!this->oList.empty())
+    {
+        this->expandNodes(endX,endY);
+        //this->tileMap->drawMap();
+        //Sleep(300);
+        //system("cls");
+        counter++;
+    }
+
+    std::cout<<"Iterationen :"<<counter<<std::endl;
+
+    finalPath = this->buildPath(endX,endY);
 
     return finalPath;
 }

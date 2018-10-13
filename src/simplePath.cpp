@@ -28,7 +28,6 @@ int simplePath::node::getFcost()
     return this->gCost + this->hCost;
 }
 
-
 //GRID IMPLEMENTATION
 simplePath::grid::grid(int _width, int _height, bool _diagonal)
 {
@@ -160,11 +159,8 @@ std::list<simplePath::node *> simplePath::navAgent::findPath(int startX, int sta
     std::cout<<"Iterationen :"<<counter<<std::endl;
 
     finalPath = this->buildPath(endX,endY);
-
     return finalPath;
 }
-
-
 
 std::list<simplePath::node *> simplePath::navAgent::buildPath(int _endPosX, int _endPosY)
 {
@@ -175,13 +171,8 @@ std::list<simplePath::node *> simplePath::navAgent::buildPath(int _endPosX, int 
     //Suche Endknoten
     for(std::list<node*>::iterator sIT = this->cList.begin(); sIT != this->cList.end(); sIT++){
         tmp = *sIT;
-        if(tmp->posX == _endPosX && tmp->posY == _endPosY)
-        {
-            break;
-
-        }
+        if(tmp->posX == _endPosX && tmp->posY == _endPosY) break;
     }
-
 
     while(tmp->parent != 0)
     {
@@ -193,7 +184,6 @@ std::list<simplePath::node *> simplePath::navAgent::buildPath(int _endPosX, int 
 
     std::cout<<"Length: "<<count<<std::endl;
     return finalPath;
-
 }
 
 void simplePath::navAgent::expandNodes(int _endPosX, int _endPosY)
@@ -201,8 +191,9 @@ void simplePath::navAgent::expandNodes(int _endPosX, int _endPosY)
     bool nodeChecked;
     this->oList.sort([](node* a, node*b){return a->getFcost() < b->getFcost();});
     node * currentNode = *(this->oList.begin());
+    node * endNode = this->tileMap->tileMap[_endPosX][_endPosY];
 
-    if(currentNode->posX == _endPosX && currentNode->posY == _endPosY)
+    if(currentNode == endNode)
     {
         std::list<node*>::iterator i = std::find(this->oList.begin(),this->oList.end(),currentNode);
         if(i != this->oList.end())
@@ -210,41 +201,31 @@ void simplePath::navAgent::expandNodes(int _endPosX, int _endPosY)
             this->cList.splice(this->cList.end(),this->oList,i);
         }
         this->oList.clear();
-
         return;
     }
-    else
-    {
-        for(std::list<node*>::iterator nIT = currentNode->neighbors.begin(); nIT != currentNode->neighbors.end(); nIT++){
-            node* thisNode = *nIT;
-            //Check better Path
-            if(currentNode->gCost + thisNode->oCost + (abs(thisNode->posX - _endPosX) + abs(thisNode->posY - _endPosY)) < thisNode->getFcost())
-            {
-                thisNode->parent = currentNode;
-            }
 
-            if(thisNode->walkable == true)
-            {
-                nodeChecked = true;
-                //Prüfe Ob Node schon geprüft wurde
-                std::list<node*>::iterator findO = std::find(this->oList.begin(),this->oList.end(),thisNode);
-                if(findO == this->oList.end())
-                {
-                    std::list<node*>::iterator findC = std::find(this->cList.begin(),this->cList.end(),thisNode);
-                    if(findC == this->cList.end())
-                    {
-                        nodeChecked = false;
-                    }
-                }
+    for(std::list<node*>::iterator nIT = currentNode->neighbors.begin(); nIT != currentNode->neighbors.end(); nIT++){
+        node* thisNode = *nIT;
+        if(!thisNode->walkable) continue;
 
-                if(nodeChecked==false){
-                    this->oList.push_back(*nIT);
-                    thisNode->openTile = true;
-                    thisNode->parent = currentNode;
-                    thisNode->gCost = thisNode->oCost + thisNode->parent->gCost;
-                    thisNode->hCost = abs(thisNode->posX - _endPosX) + abs(thisNode->posY - _endPosY);
-                }
-            }
+        //Check better Path
+        if(currentNode->gCost + thisNode->oCost + (abs(thisNode->posX - _endPosX) + abs(thisNode->posY - _endPosY)) < thisNode->getFcost())
+        {
+            thisNode->parent = currentNode;
+        }
+
+        nodeChecked = true;
+        //Prüfe Ob Node schon geprüft wurde
+        std::list<node*>::iterator findO = std::find(this->oList.begin(),this->oList.end(),thisNode);
+        std::list<node*>::iterator findC = std::find(this->cList.begin(),this->cList.end(),thisNode);
+        if(findO == this->oList.end() && findC == this->cList.end()) nodeChecked = false;
+
+        if(!nodeChecked){
+            this->oList.push_back(*nIT);
+            thisNode->openTile = true;
+            thisNode->parent = currentNode;
+            thisNode->gCost = thisNode->oCost + thisNode->parent->gCost;
+            thisNode->hCost = abs(thisNode->posX - _endPosX) + abs(thisNode->posY - _endPosY);
         }
     }
 

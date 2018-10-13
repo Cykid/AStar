@@ -108,67 +108,18 @@ void simplePath::grid::initMap()
         {
             std::list<node*> nbList;
             nbList.clear();
-            int nX = 0;
-            int nY = 0;
-            //Oben
-            nX = x;
-            nY = y -1;
-            if(nX >= 0 && nX < this->width && nY >= 0 && nY < this->height)
-            {
-                nbList.push_back(this->tileMap[nX][nY]);
-            }
-            //Rechts
-            nX = x+1;
-            nY = y;
-            if(nX >= 0 && nX < this->width && nY >= 0 && nY < this->height)
-            {
-                nbList.push_back(this->tileMap[nX][nY]);
-            }
-            //unten
-            nX = x;
-            nY = y +1;
-            if(nX >= 0 && nX < this->width && nY >= 0 && nY < this->height)
-            {
-                nbList.push_back(this->tileMap[nX][nY]);
-            }
-            //links
-            nX = x -1;
-            nY = y;
-            if(nX >= 0 && nX < this->width && nY >= 0 && nY < this->height)
-            {
-                nbList.push_back(this->tileMap[nX][nY]);
-            }
 
-            if(this->diagonal==true)
-            {
-                nX = x +1;
-                nY = y -1;
-                if(nX >= 0 && nX < this->width && nY >= 0 && nY < this->height)
-                {
+            // Optimierter Algorithmus zum berechnen der Nachbarn
+            for (int i = -1; i <= 1; i++) {
+                int nX = x + i;
+                // Prüfen ob nX innerhalb der Map ist
+                if (nX < 0 || nX >= this->width) continue;
+                for (int ii = -1; ii <= 1; ii++) {
+                    int nY = y + ii;
+                    // Prüfen ob nX innerhalb der Map ist || Eigenes Feld überspringen || Prüfen ob Diagonalen erlaubt sind
+                    if (nY < 0 || nY >= this->height || (ii == 0 && i == 0) || (i * ii != 0 && !this->diagonal)) continue;
                     nbList.push_back(this->tileMap[nX][nY]);
                 }
-
-                nX = x +1;
-                nY = y +1;
-                if(nX >= 0 && nX < this->width && nY >= 0 && nY < this->height)
-                {
-                    nbList.push_back(this->tileMap[nX][nY]);
-                }
-
-                nX = x -1;
-                nY = y +1;
-                if(nX >= 0 && nX < this->width && nY >= 0 && nY < this->height)
-                {
-                    nbList.push_back(this->tileMap[nX][nY]);
-                }
-
-                nX = x -1;
-                nY = y -1;
-                if(nX >= 0 && nX < this->width && nY >= 0 && nY < this->height)
-                {
-                    nbList.push_back(this->tileMap[nX][nY]);
-                }
-
             }
 
             this->tileMap[x][y]->neighbors = nbList;

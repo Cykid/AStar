@@ -109,14 +109,14 @@ void simplePath::grid::initMap()
             std::list<node*> nbList;
             nbList.clear();
 
-            // Optimierter Algorithmus zum berechnen der Nachbarn
+            // optimized algorithm to calculate neighbors
             for (int i = -1; i <= 1; i++) {
                 int nX = x + i;
-                // Prüfen ob nX innerhalb der Map ist
+                // check if nX is inside of the map
                 if (nX < 0 || nX >= this->width) continue;
                 for (int ii = -1; ii <= 1; ii++) {
                     int nY = y + ii;
-                    // Prüfen ob nX innerhalb der Map ist || Eigenes Feld überspringen || Prüfen ob Diagonalen erlaubt sind
+                    // check if nY is inside the map ||    skip own node    || check if diagonals are allowed
                     if (nY < 0 || nY >= this->height || (ii == 0 && i == 0) || (i * ii != 0 && !this->diagonal)) continue;
                     nbList.push_back(this->tileMap[nX][nY]);
                 }

@@ -165,18 +165,12 @@ std::list<simplePath::node *> simplePath::navAgent::findPath(int startX, int sta
             while(!this->oList.empty())
             {
                 this->expandNodes(endX,endY);
-
-                //this->tileMap->drawMap();
-
-
-                //Sleep(300);
-                //system("cls");
                 counter++;
             }
 
             std::cout<<"Iterationen :"<<counter<<std::endl;
 
-            this->buildPath(endX,endY);
+            finalPath = this->buildPath(endX,endY);
         }
         else
         {

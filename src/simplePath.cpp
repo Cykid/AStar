@@ -15,7 +15,7 @@ simplePath::node::node(int _posX, int _posY)
 {
     this->posX = _posX;
     this->posY = _posY;
-    this->parent = nullptr;
+    this->parent = 0;
 }
 
 simplePath::node::~node()
@@ -259,7 +259,7 @@ std::list<simplePath::node *> simplePath::navAgent::buildPath(int _endPosX, int 
     }
 
 
-    while(tmp->parent != nullptr)
+    while(tmp->parent != 0)
     {
         finalPath.push_front(tmp);
         tmp->pathTile = true;

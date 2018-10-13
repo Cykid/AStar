@@ -6,13 +6,13 @@ The collection is currently under development. Important functions such as conve
 
 ## ToDo:
 
- - Wrap code into one class
  - Situation-dependent heuristic
  - Algorithm optimization
  - 2D Array into grid 
  - Memoryleak fixing
  
  ## Features
+- one Class
 - If there is a way, it will be found
 - Optionally, diagonal pathfinding can be allowed
 

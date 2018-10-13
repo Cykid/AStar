@@ -1,15 +1,15 @@
-#include <iostream>
-#include <mapManager.h>
-#include <MFPath.h>
-using namespace std;
+#include <simplePath.h>
 
 int main()
 {
-    mapManager * myMap = new mapManager(25,25,false);
-    MFPath* pathfinder = new MFPath(myMap);
-
-    pathfinder->findPath(0,0,23,23);
-    myMap->drawMap();
+    //Create your Grid
+    simplePath::grid * PathGrid = new simplePath::grid(20,20,true);
+    //Give your Pathfinding Object a Navagent
+    simplePath::navAgent * navComponent = new simplePath::navAgent(PathGrid);
+    //find your path
+    navComponent->findPath(0,0,19,19);
+    //Show Result
+    PathGrid->drawMap();
 
     return 0;
 }

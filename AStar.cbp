@@ -12,8 +12,9 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-std=c++11" />
+					<Add option="-std=c++0x" />
 					<Add option="-g" />
+					<Add option="-lstdc++" />
 					<Add directory="include" />
 				</Compiler>
 			</Target>

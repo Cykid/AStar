@@ -4,7 +4,11 @@
 #include <iostream>
 #include <algorithm>
 #include <stdlib.h>
-
+#include <windows.h>
+#include <future>
+#include <string>
+#include <fstream>
+#include <cstdlib> strtol(s.c_str(),0,10)
 
 class simplePath
 {
@@ -39,6 +43,7 @@ class simplePath
     class grid{
         public:
             grid(int _width, int _height,bool _diagonal);
+            grid(std::string pathTofile, bool _diagonal);
             virtual ~grid();
             int width = 5;
             int height = 5;
@@ -48,7 +53,7 @@ class simplePath
             void drawMap();
             bool diagonal = false;
             void initMap();
-    };
+};
 
     class navAgent{
         public:
@@ -60,6 +65,7 @@ class simplePath
             std::list<class node*>cList;
 
             std::list<simplePath::node *> findPath(int startX,int startY,int endX, int endY);
+            std::future<std::list<simplePath::node *>> findPathAsync(int _startX, int _startY, int _endX, int _endY);
             std::list<simplePath::node *> buildPath(int _endPosX, int _endPosY);
             void expandNodes(int _endPosX, int _endPosY);
     };

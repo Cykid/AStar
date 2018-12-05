@@ -134,3 +134,22 @@
 	<algorithm>
 	<stdlib.h>
 
+1544002240 source:m:\astar-master\main.cpp
+	<simplePath.h>
+	<chrono>
+	<windows.h>
+
+1542784292 m:\astar-master\include\simplepath.h
+	<list>
+	<iostream>
+	<algorithm>
+	<stdlib.h>
+	<windows.h>
+	<future>
+	<string>
+	<fstream>
+	<cstdlib>
+
+1544002099 source:m:\astar-master\src\simplepath.cpp
+	"simplePath.h"
+
